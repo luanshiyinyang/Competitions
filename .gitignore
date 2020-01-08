@@ -1,5 +1,6 @@
 # file
 *.zip
+*.h5
 # folder
 FacialExpression/
 .idea/
