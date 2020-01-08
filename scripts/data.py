@@ -3,7 +3,6 @@ Author: Zhou Chen
 Date: 2020/1/8
 Desc: desc
 """
-from config import data_folder
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import pandas as pd
 
@@ -12,19 +11,16 @@ class DataSet(object):
 
     def __init__(self, root_folder):
         self.folder = root_folder
-        self.df_desc = pd.read_csv(self.folder, encoding="utf8")
+        self.df_desc = pd.read_csv(self.folder + 'description.csv', encoding="utf8")
 
-    def get_generator(self, da=True):
+    def get_generator(self, batch_size=32, da=True):
         if da:
             # 数据增强
-            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=False, shear_range=0.2,
+            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=True, shear_range=0.2,
                                            width_shift_range=0.1)
         else:
-            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=False,
-                                           shear_range=0.2,
-                                           width_shift_range=0.1)
-        img_size = (224, 224)
-        batch_size = 32
+            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=False)
+        img_size = (64, 64)
         train_generator = train_gen.flow_from_dataframe(dataframe=self.df_desc,
                                                         directory='.',
                                                         x_col='file_id',

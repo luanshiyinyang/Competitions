@@ -24,5 +24,5 @@ def plot_history(his):
     plt.title("ResNet50")
     plt.legend(loc=0)
 
-    plt.savefig("his.png")
+    plt.savefig("../assets/his.png")
     plt.show()

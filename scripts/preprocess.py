@@ -57,7 +57,7 @@ def preprocess():
         if not os.path.exists(out_path):
             os.mkdir(out_path)
         for file in glob(in_path + '/*.jpg'):
-            file_name = file.split('\\')[-1]
+            file_name = file.split('\\')[-1]  # Linux系统需要修改这一项file_name = file.split('/')[-1]
             print(file_name)
             img = face_recognition.load_image_file(file)
             if max(img.shape) > 2000:
@@ -89,5 +89,5 @@ def generate_desc_csv(folder):
 
 
 if __name__ == '__main__':
-    # preprocess()  # 生成处理后的数据集
+    preprocess()  # 生成处理后的数据集
     generate_desc_csv(generate_folder)  # 为生成的数据集生成说明文件，方便后面keras的生成器读取

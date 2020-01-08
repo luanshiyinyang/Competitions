@@ -4,7 +4,6 @@ Date: 2020/1/8
 Desc: desc
 """
 from data import DataSet
-from config import generate_folder
 from model import CNN, ResNet_pretrained
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 from tensorflow.keras.optimizers import Adam
@@ -16,7 +15,7 @@ if not os.path.exists("../models/"):
 
 
 # 数据
-ds = DataSet(generate_folder)
+ds = DataSet('../data/')
 train_generator, valid_generator = ds.get_generator()
 # 模型
 model_cnn = CNN()
