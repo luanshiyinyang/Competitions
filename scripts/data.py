@@ -16,10 +16,9 @@ class DataSet(object):
     def get_generator(self, batch_size=32, da=True):
         if da:
             # 数据增强
-            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=True, shear_range=0.2,
-                                           width_shift_range=0.1)
+            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.25, horizontal_flip=True)
         else:
-            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.2, horizontal_flip=False)
+            train_gen = ImageDataGenerator(rescale=1 / 255., validation_split=0.25, horizontal_flip=False)
         img_size = (64, 64)
         train_generator = train_gen.flow_from_dataframe(dataframe=self.df_desc,
                                                         directory='.',
@@ -28,6 +27,7 @@ class DataSet(object):
                                                         batch_size=batch_size,
                                                         class_mode='categorical',
                                                         target_size=img_size,
+                                                        color_mode='grayscale',
                                                         subset='training')
         valid_generator = train_gen.flow_from_dataframe(dataframe=self.df_desc,
                                                         directory=".",
@@ -36,5 +36,6 @@ class DataSet(object):
                                                         batch_size=batch_size,
                                                         class_mode="categorical",
                                                         target_size=img_size,
+                                                        color_mode='grayscale',
                                                         subset='validation')
         return train_generator, valid_generator

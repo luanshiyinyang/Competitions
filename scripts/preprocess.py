@@ -56,7 +56,11 @@ def preprocess():
         out_path = os.path.join(generate_folder, category + '_face')
         if not os.path.exists(out_path):
             os.mkdir(out_path)
+        num = 0
         for file in glob(in_path + '/*.jpg'):
+            num += 1
+            if num >= 3000:
+                break
             file_name = file.split('\\')[-1]  # Linux系统需要修改这一项file_name = file.split('/')[-1]
             print(file_name)
             img = face_recognition.load_image_file(file)
