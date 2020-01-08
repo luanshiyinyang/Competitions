@@ -1,0 +1,8 @@
+numpy
+tensorflow==2.0.0
+opencv-python
+tqdm
+pillow
+glob3
+pandas
+face_recognition

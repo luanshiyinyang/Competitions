@@ -1,0 +1,8 @@
+# file
+*.zip
+# folder
+FacialExpression/
+.idea/
+.ipynb_checkpoints/
+__pycache__/
+generated/
