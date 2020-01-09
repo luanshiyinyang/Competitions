@@ -56,11 +56,7 @@ def preprocess():
         out_path = os.path.join(generate_folder, category + '_face')
         if not os.path.exists(out_path):
             os.mkdir(out_path)
-        num = 0
         for file in glob(in_path + '/*.jpg'):
-            num += 1
-            if num >= 3000:
-                break
             file_name = file.split('\\')[-1]  # Linux系统需要修改这一项file_name = file.split('/')[-1]
             print(file_name)
             img = face_recognition.load_image_file(file)
@@ -84,7 +80,7 @@ def generate_desc_csv(folder):
     file_id = []
     label = []
     for category in tqdm(categories):
-        images = glob(os.path.join(folder, category) + '/*.jpg')  # 这里可以观察一下数据集，发现图片均为jpg格式，正则匹配比较简单
+        images = glob(os.path.join(folder, category) + '/*.png')  # 这里可以观察一下数据集，发现图片均为jpg格式，正则匹配比较简单
         for img in images:
             file_id.append(img)
             label.append(category)
