@@ -2,3 +2,9 @@
 .idea/
 .vscode/
 .ipynb_checkpoints/
+
+# file
+*.7z
+new_data/
+*.h5
+*.model
