@@ -1,0 +1,7 @@
+tensorflow-gpu==2.0.0
+numpy
+pandas
+scikit-learn
+gensim
+scipy
+lightgbm
